@@ -18,6 +18,15 @@ vim.api.nvim_set_keymap("n", "H", "^", { noremap = true })
 -- 设置 L 键跳到行尾
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = true })
 
+--打开终端后自动进入插入模式 start
+local term_mode = vim.api.nvim_create_augroup("TERM_MODE", {clear = true})
+vim.api.nvim_create_autocmd({"TermOpen"}, {
+    pattern = "*",
+    group = term_mode,
+    command = [[normal i]]
+})
+-- - 打开终端后自动进入插入模式end 
+
 if vim.g.vscode then
   -- VSCode extension
   -- 切换行注释
@@ -70,7 +79,7 @@ if vim.g.vscode then
         augroup END
     ]])
   end
-  
+ 
 else
   -- ordinary Neovim
 
